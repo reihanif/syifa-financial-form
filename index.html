@@ -43,8 +43,20 @@
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                               </svg>
                             </div>
-                            <input x-model="formData.date" datepicker datepicker-autohide datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd" id="date" type="text" name="entry.687551178" autocomplete="off" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
-                        </div>                    
+                            <input x-model="formData.date" datepicker datepicker-autohide datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd" id="date" type="text" name="entry.687551178" autocomplete="off" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
+                            <input x-model="formData.date" data-modal-target="popup-modal" data-modal-toggle="popup-modal" id="date" type="text" name="entry.687551178" autocomplete="off" class="sm:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
+                        </div>        
+                    </div>
+
+                    <div x-ref="modalEl" id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-fit max-w-md max-h-full">
+                            <button type="button" class="hidden" data-modal-hide="popup-modal">
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                <div x-ref="datepickerEl" inline-datepicker datepicker-buttons datepicker-autoselect-today data-date="today()" datepicker-format="yyyy-mm-dd"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <template x-if="formData.transaction == 'expense' || formData.transaction == 'income'">

@@ -1,5 +1,6 @@
 import './style.css'
 import 'flowbite'
+import { Modal } from 'flowbite';
 import Alpine from 'alpinejs'
  
 window.Alpine = Alpine
@@ -93,7 +94,29 @@ Alpine.data('form', () => ({
         this.formData.amount = value.replace(/\D/g, '');
     },
 
-    init() {}
+    hideModal() {
+        const hideButton = document.querySelector('[data-modal-hide="popup-modal"]');
+        if (hideButton) {
+            hideButton.click();
+        }
+    },
+
+    init() {
+        const datepickerEl = this.$refs.datepickerEl;
+
+        datepickerEl.addEventListener('changeDate', (event) => {
+            const selectedDate = event.detail.date;
+            if (selectedDate) {
+                const year = selectedDate.getFullYear();
+                const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+                const day = String(selectedDate.getDate()).padStart(2, '0');
+                this.formData.date = `${year}-${month}-${day}`;
+            } else {
+                this.formData.date = '';
+            } 
+            this.hideModal()
+        });
+    }
 }))
  
 Alpine.start()
