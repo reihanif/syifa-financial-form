@@ -72,6 +72,12 @@ Alpine.data('form', () => ({
 
         this.submitted = false;
         this.loading = false;
+        const datepickerClearBtn = Array.from(document.querySelectorAll('button'))
+            .find(button => button.textContent.trim() === 'Clear');
+
+        if (datepickerClearBtn) {
+            datepickerClearBtn.click();
+        }
     },
     handleSubmit() {                    
         this.loading = true;
@@ -95,9 +101,9 @@ Alpine.data('form', () => ({
     },
 
     hideModal() {
-        const hideButton = document.querySelector('[data-modal-hide="popup-modal"]');
-        if (hideButton) {
-            hideButton.click();
+        const datepickerHideButton = document.querySelector('[data-modal-hide="popup-datepicker"]');
+        if (datepickerHideButton) {
+            datepickerHideButton.click();
         }
     },
 
