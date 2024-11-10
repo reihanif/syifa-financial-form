@@ -27,7 +27,7 @@ Alpine.data('form', () => ({
                 category: 'entry.1519867064',
                 amount: 'entry.1615539188',
                 account: 'entry.1180676400',
-                notes: 'entry.494079581',
+                notes: 'entry.623548103',
             },
             action: 'https://docs.google.com/forms/d/e/1FAIpQLSeS04Ril3JH8_0um7h1hMlBIZkTDMt_RYsjTCzoFYTxmz72RA/formResponse'
         },
