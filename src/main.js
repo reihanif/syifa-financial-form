@@ -37,12 +37,14 @@ Alpine.data('form', () => ({
             'gifts',
             'travel',
             'shopping',
+            'savings',
+            'receivables',
             'other',
         ],
-        income: ['monthly salary', 'gift'],
+        income: ['monthly salary', 'gift', 'receivables', 'remain balance', 'bonus', 'other'],
         budget: ['savings', 'needs', 'wants']
     },
-    accounts: ['Mandiri', 'BRI'],
+    accounts: ['Mandiri', 'BRI', 'Cash'],
     ucwords(text) {
         return text.charAt(0).toUpperCase() + text.slice(1);
     },
