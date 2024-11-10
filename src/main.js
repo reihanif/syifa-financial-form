@@ -34,6 +34,7 @@ Alpine.data('form', () => ({
             'gifts',
             'travel',
             'shopping',
+            'savings',
             'receivables',
             'other',
         ],
