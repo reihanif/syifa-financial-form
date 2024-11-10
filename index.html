@@ -10,7 +10,7 @@
     <section class="bg-white dark:bg-gray-900">
         <div x-data="form" class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Reihan Hanif Financial Report</h2>
-            <form x-bind:action="action" target="hidden_iframe" x-on:submit.prevent="handleSubmit">
+            <form x-bind:action="forms[formData.transaction].action" target="hidden_iframe" x-on:submit.prevent="handleSubmit">
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div class="sm:col-span-2">                        
                         <h3 class="mb-2 font-medium text-gray-900 dark:text-gray-300">Transaction</h3>
@@ -27,12 +27,6 @@
                                     <label for="transaction-income" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Income</label>
                                 </div>
                             </li>
-                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                <div class="flex items-center ps-3">
-                                    <input x-model="formData.transaction" id="transaction-budget" type="radio" value="budget" name="transaction" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required>
-                                    <label for="transaction-budget" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Budgeting</label>
-                                </div>
-                            </li>
                             <li class="w-full dark:border-gray-600">
                                 <div class="flex items-center ps-3">
                                     <input x-model="formData.transaction" id="transaction-transfer" type="radio" value="transfer" name="transaction" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required>
@@ -42,19 +36,17 @@
                         </ul>
                     </div>
                     
-                    <div x-show="formData.transaction !== 'budget'">
-                        <div>
-                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                  </svg>
-                                </div>
-                                <input x-model="formData.date" name="entry.687551178" datepicker datepicker-autohide datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd" id="date" type="text" autocomplete="off" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
-                                <input x-model="formData.date" name="entry.687551178" readonly data-modal-target="popup-datepicker" data-modal-toggle="popup-datepicker" id="date" type="text" autocomplete="off" class="sm:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
-                            </div>        
-                        </div>
+                    <div>
+                        <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                </svg>
+                            </div>
+                            <input x-model="formData.date" x-bind:name="forms[formData.transaction].names.date" datepicker datepicker-autohide datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd" id="date" type="text" autocomplete="off" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
+                            <input x-model="formData.date" x-bind:name="forms[formData.transaction].names.date" readonly data-modal-target="popup-datepicker" data-modal-toggle="popup-datepicker" id="date" type="text" autocomplete="off" class="sm:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
+                        </div>        
                     </div>
                     
                     <div x-ref="modalEl" id="popup-datepicker" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -68,39 +60,34 @@
                         </div>
                     </div>
 
-                    <div x-show="formData.transaction == 'budget'">
-                        <div>
-                            <label for="month" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Month</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                  </svg>
-                                </div>
-                                <input x-model="formData.monthYear" x-ref="monthpickerEl" datepicker datepicker-autohide datepicker-format="MM yyyy" id="month" type="text" autocomplete="off" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select month" required="">
-                                <input x-model="formData.monthYear" readonly data-modal-target="popup-monthpicker" data-modal-toggle="popup-monthpicker" id="month" type="text" autocomplete="off" class="sm:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select month" required="">
-                            </div>        
-                            <div class="hidden">
-                                <input x-model="formData.month" type="text">
-                                <input x-model="formData.year" type="text">
+                    <div>
+                        <label for="month" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Budget Month</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                </svg>
+                            </div>
+                            <input x-model="formData.monthYear" x-ref="monthpickerEl" datepicker datepicker-autohide datepicker-format="MM yyyy" id="month" type="text" autocomplete="off" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select month" required="">
+                            <input x-model="formData.monthYear" readonly data-modal-target="popup-monthpicker" data-modal-toggle="popup-monthpicker" id="month" type="text" autocomplete="off" class="sm:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select month" required="">
+                            <input class="hidden" x-model="formData.month" type="text" x-bind:name="forms[formData.transaction].names.month">
+                        </div>
+                    </div>
+                    <div x-ref="monthpickerModalEl" id="popup-monthpicker" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-fit max-w-md max-h-full">
+                            <button type="button" class="hidden" data-modal-hide="popup-monthpicker">
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                <div x-ref="inlineMonthpickerEl" inline-datepicker datepicker-format="MM yyyy"></div>
                             </div>
                         </div>
-                        <div x-ref="monthpickerModalEl" id="popup-monthpicker" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div class="relative p-4 w-fit max-w-md max-h-full">
-                                <button type="button" class="hidden" data-modal-hide="popup-monthpicker">
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                    <div x-ref="inlineMonthpickerEl" inline-datepicker datepicker-format="MM yyyy"></div>
-                                </div>
-                            </div>
-                        </div>                 
                     </div>
 
                     <template x-if="formData.transaction == 'expense' || formData.transaction == 'income' || formData.transaction == 'budget'">
                         <div>
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                            <select x-model="formData.category" id="category" name="entry.1602695596" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                            <select x-model="formData.category" id="category" x-bind:name="forms[formData.transaction].names.category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                                 <option value="" selected="">Select category</option>
 
                                 <template x-if="formData.transaction == 'expense'">
@@ -127,12 +114,12 @@
                     <div>
                         <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount</label>
                         <input x-model="formattedAmount" x-on:input="formatAmount" x-on:keydown="allowOnlyNumeric($event)" type="text" inputmode="numeric" autocomplete="off" id="amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" x-bind:placeholder="ucwords(formData.transaction) + ' amount'" required="">
-                        <input x-model="formData.amount" type="hidden" name="entry.1930946708">
+                        <input x-model="formData.amount" type="hidden" x-bind:name="forms[formData.transaction].names.amount">
                     </div>
 
                     <div>
                         <label for="account" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Account</label>
-                        <select x-model="formData.account" id="account" name="entry.1313498432" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                        <select x-model="formData.account" id="account" x-bind:name="forms[formData.transaction].names.account" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                             <option value="" selected="">Select account</option>
                             <template x-for="(account, index) in accounts" :key="index">
                                 <option x-bind:value="account" x-text="ucwords(account)"></option>
@@ -143,7 +130,7 @@
                     <template x-if="formData.transaction == 'transfer'">
                         <div>
                             <label for="destination-account" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Account destination</label>
-                            <select x-model="formData.destinationAccount" id="destination-account" name="entry.1181554330" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                            <select x-model="formData.destinationAccount" id="destination-account" x-bind:name="forms[formData.transaction].names.destinationAccount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                                 <option selected="">Select account destination</option>
                                 <template x-for="(account, index) in accounts" :key="index">
                                     <option x-bind:value="account" x-text="ucwords(account)"></option>
@@ -154,7 +141,7 @@
                     
                     <div class="sm:col-span-2">
                         <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes</label>
-                        <textarea x-model="formData.notes" id="notes" name="entry.494079581" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Notes (optional)"></textarea>
+                        <textarea x-model="formData.notes" id="notes" x-bind:name="forms[formData.transaction].names.notes" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Notes (optional)"></textarea>
                     </div>
                 </div>
                 <button :disabled="loading" type="submit" class="inline-flex w-full sm:w-fit items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">

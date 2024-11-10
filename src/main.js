@@ -1,6 +1,5 @@
 import './style.css'
 import 'flowbite'
-import { Modal } from 'flowbite';
 import Alpine from 'alpinejs'
  
 window.Alpine = Alpine
@@ -20,10 +19,40 @@ Alpine.data('form', () => ({
         destinationAccount: '',
         notes: '',
     },
-    actions: {
-        expense: 'https://docs.google.com/forms/d/e/1FAIpQLScLmvrLJC1z8qlgfsQ1xgriW8cKXOil_D8-1YWgUF_tnuQMWQ/formResponse',
-        income: 'https://docs.google.com/forms/d/e/1FAIpQLSdu-UwQy8ZFzjniKKOXRdTGGsFKO3I4UzKoA9jExSFnrkpCZA/formResponse',
-        transfer: 'https://docs.google.com/forms/d/e/1FAIpQLSeFEAlPeRc2WKAf9JlFxbZiJgHfuHDygUu_vM93YJJ3mQWJcA/formResponse',
+    forms: {
+        expense: {
+            names: {
+                month: 'entry.1665901515',
+                date: 'entry.687551178',
+                category: 'entry.1602695596',
+                amount: 'entry.1930946708',
+                account: 'entry.1313498432',
+                notes: 'entry.494079581',
+            },
+            action: 'https://docs.google.com/forms/d/e/1FAIpQLScLmvrLJC1z8qlgfsQ1xgriW8cKXOil_D8-1YWgUF_tnuQMWQ/formResponse'
+        },
+        income: {
+            names: {
+                month: 'entry.688109083',
+                date: 'entry.687551178',
+                category: 'entry.1602695596',
+                amount: 'entry.1930946708',
+                account: 'entry.1313498432',
+                notes: 'entry.494079581',
+            },
+            action: 'https://docs.google.com/forms/d/e/1FAIpQLSdu-UwQy8ZFzjniKKOXRdTGGsFKO3I4UzKoA9jExSFnrkpCZA/formResponse'
+        },
+        transfer: {
+            names: {
+                month: 'entry.372125670',
+                date: 'entry.687551178',
+                amount: 'entry.1930946708',
+                account: 'entry.1313498432',
+                destinationAccount: 'entry.1181554330',
+                notes: 'entry.494079581',
+            },
+            action: 'https://docs.google.com/forms/d/e/1FAIpQLSeFEAlPeRc2WKAf9JlFxbZiJgHfuHDygUu_vM93YJJ3mQWJcA/formResponse'
+        }
     },
     categories: {
         expense: [
@@ -41,8 +70,7 @@ Alpine.data('form', () => ({
             'receivables',
             'other',
         ],
-        income: ['monthly salary', 'gift', 'receivables', 'remain balance', 'bonus', 'other'],
-        budget: ['savings', 'needs', 'wants']
+        income: ['monthly salary', 'gift', 'receivables', 'remain balance', 'bonus', 'other']
     },
     accounts: ['Mandiri', 'BRI', 'Cash'],
     ucwords(text) {
@@ -99,9 +127,6 @@ Alpine.data('form', () => ({
         }
     },
 
-    get action() {
-        return this.actions[this.formData.transaction];
-    },
     get formattedAmount() {
         return this.formData.amount ? this.formatToRupiah(this.formData.amount) : '';
     },
