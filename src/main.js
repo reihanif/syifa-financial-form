@@ -37,7 +37,7 @@ Alpine.data('form', () => ({
             'receivables',
             'other',
         ],
-        income: ['monthly salary', 'gift', 'receivables', 'remain balance', 'bonus']
+        income: ['monthly salary', 'gift', 'receivables', 'remain balance', 'bonus', 'other']
     },
     accounts: ['Mandiri', 'BRI', 'Cash'],
     ucwords(text) {
