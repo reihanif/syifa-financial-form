@@ -22,36 +22,36 @@ Alpine.data('form', () => ({
     forms: {
         expense: {
             names: {
-                month: 'entry.1665901515',
-                date: 'entry.687551178',
-                category: 'entry.1602695596',
-                amount: 'entry.1930946708',
-                account: 'entry.1313498432',
+                month: 'entry.1044745921',
+                date: 'entry.1340632321',
+                category: 'entry.1519867064',
+                amount: 'entry.1615539188',
+                account: 'entry.1180676400',
                 notes: 'entry.494079581',
             },
-            action: 'https://docs.google.com/forms/d/e/1FAIpQLScLmvrLJC1z8qlgfsQ1xgriW8cKXOil_D8-1YWgUF_tnuQMWQ/formResponse'
+            action: 'https://docs.google.com/forms/d/e/1FAIpQLSeS04Ril3JH8_0um7h1hMlBIZkTDMt_RYsjTCzoFYTxmz72RA/formResponse'
         },
         income: {
             names: {
-                month: 'entry.688109083',
-                date: 'entry.687551178',
-                category: 'entry.1602695596',
-                amount: 'entry.1930946708',
-                account: 'entry.1313498432',
-                notes: 'entry.494079581',
+                month: 'entry.1044745921',
+                date: 'entry.1340632321',
+                category: 'entry.1519867064',
+                amount: 'entry.1615539188',
+                account: 'entry.1180676400',
+                notes: 'entry.623548103',
             },
-            action: 'https://docs.google.com/forms/d/e/1FAIpQLSdu-UwQy8ZFzjniKKOXRdTGGsFKO3I4UzKoA9jExSFnrkpCZA/formResponse'
+            action: 'https://docs.google.com/forms/d/e/1FAIpQLSelvqgjl9q4_JzVIzXKgzaLQaezExr2Z8IqC5AGm5uHgbYlJA/formResponse'
         },
         transfer: {
             names: {
-                month: 'entry.372125670',
-                date: 'entry.687551178',
-                amount: 'entry.1930946708',
-                account: 'entry.1313498432',
-                destinationAccount: 'entry.1181554330',
-                notes: 'entry.494079581',
+                month: 'entry.1044745921',
+                date: 'entry.1340632321',
+                amount: 'entry.1615539188',
+                account: 'entry.1180676400',
+                destinationAccount: 'entry.709191055',
+                notes: 'entry.623548103',
             },
-            action: 'https://docs.google.com/forms/d/e/1FAIpQLSeFEAlPeRc2WKAf9JlFxbZiJgHfuHDygUu_vM93YJJ3mQWJcA/formResponse'
+            action: 'https://docs.google.com/forms/d/e/1FAIpQLScxO_JgjfWntG7l6-j7XnDBtCuAjGeyTNnwqrxDYO0dHnxfzw/formResponse'
         }
     },
     categories: {
@@ -72,7 +72,7 @@ Alpine.data('form', () => ({
         ],
         income: ['monthly salary', 'gift', 'receivables', 'remain balance', 'bonus', 'other']
     },
-    accounts: ['Mandiri', 'BRI', 'Cash'],
+    accounts: ['Mandiri', 'BNI', 'Cash'],
     ucwords(text) {
         return text.charAt(0).toUpperCase() + text.slice(1);
     },
