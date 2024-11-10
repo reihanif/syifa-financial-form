@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/financial-report-form/',
+  base: '/syifa-financial-form/',
   build: {
     outDir: 'dist',
   },
