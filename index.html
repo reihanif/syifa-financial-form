@@ -27,6 +27,12 @@
                                     <label for="transaction-income" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Income</label>
                                 </div>
                             </li>
+                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                <div class="flex items-center ps-3">
+                                    <input x-model="formData.transaction" id="transaction-budget" type="radio" value="budget" name="transaction" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required>
+                                    <label for="transaction-budget" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Budgeting</label>
+                                </div>
+                            </li>
                             <li class="w-full dark:border-gray-600">
                                 <div class="flex items-center ps-3">
                                     <input x-model="formData.transaction" id="transaction-transfer" type="radio" value="transfer" name="transaction" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" required>
@@ -35,19 +41,22 @@
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                              </svg>
-                            </div>
-                            <input x-model="formData.date" datepicker datepicker-autohide datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd" id="date" type="text" name="entry.687551178" autocomplete="off" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
-                            <input x-model="formData.date" readonly data-modal-target="popup-datepicker" data-modal-toggle="popup-datepicker" id="date" type="text" name="entry.687551178" autocomplete="off" class="sm:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
-                        </div>        
+                    
+                    <div x-show="formData.transaction !== 'budget'">
+                        <div>
+                            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                  </svg>
+                                </div>
+                                <input x-model="formData.date" name="entry.687551178" datepicker datepicker-autohide datepicker-buttons datepicker-autoselect-today datepicker-format="yyyy-mm-dd" id="date" type="text" autocomplete="off" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
+                                <input x-model="formData.date" name="entry.687551178" readonly data-modal-target="popup-datepicker" data-modal-toggle="popup-datepicker" id="date" type="text" autocomplete="off" class="sm:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" required="">
+                            </div>        
+                        </div>
                     </div>
-
+                    
                     <div x-ref="modalEl" id="popup-datepicker" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div class="relative p-4 w-fit max-w-md max-h-full">
                             <button type="button" class="hidden" data-modal-hide="popup-datepicker">
@@ -59,7 +68,36 @@
                         </div>
                     </div>
 
-                    <template x-if="formData.transaction == 'expense' || formData.transaction == 'income'">
+                    <div x-show="formData.transaction == 'budget'">
+                        <div>
+                            <label for="month" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Month</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                  </svg>
+                                </div>
+                                <input x-model="formData.monthYear" x-ref="monthpickerEl" datepicker datepicker-autohide datepicker-format="MM yyyy" id="month" type="text" autocomplete="off" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select month" required="">
+                                <input x-model="formData.monthYear" readonly data-modal-target="popup-monthpicker" data-modal-toggle="popup-monthpicker" id="month" type="text" autocomplete="off" class="sm:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select month" required="">
+                            </div>        
+                            <div class="hidden">
+                                <input x-model="formData.month" type="text">
+                                <input x-model="formData.year" type="text">
+                            </div>
+                        </div>
+                        <div x-ref="monthpickerModalEl" id="popup-monthpicker" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative p-4 w-fit max-w-md max-h-full">
+                                <button type="button" class="hidden" data-modal-hide="popup-monthpicker">
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <div x-ref="inlineMonthpickerEl" inline-datepicker datepicker-format="MM yyyy"></div>
+                                </div>
+                            </div>
+                        </div>                 
+                    </div>
+
+                    <template x-if="formData.transaction == 'expense' || formData.transaction == 'income' || formData.transaction == 'budget'">
                         <div>
                             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                             <select x-model="formData.category" id="category" name="entry.1602695596" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
@@ -73,6 +111,12 @@
 
                                 <template x-if="formData.transaction == 'income'">
                                     <template x-for="(category, index) in categories.income" :key="index">
+                                        <option x-bind:value="ucwords(category)" x-text="ucwords(category)"></option>
+                                    </template>
+                                </template>
+
+                                <template x-if="formData.transaction == 'budget'">
+                                    <template x-for="(category, index) in categories.budget" :key="index">
                                         <option x-bind:value="ucwords(category)" x-text="ucwords(category)"></option>
                                     </template>
                                 </template>

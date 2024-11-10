@@ -11,6 +11,9 @@ Alpine.data('form', () => ({
     formData: {
         transaction: 'expense',
         date: '',
+        monthYear: '',
+        month: '',
+        year: '',
         category: '',
         amount: '',
         account: '',
@@ -36,7 +39,8 @@ Alpine.data('form', () => ({
             'shopping',
             'other',
         ],
-        income: ['monthly salary', 'gift']
+        income: ['monthly salary', 'gift'],
+        budget: ['savings', 'needs', 'wants']
     },
     accounts: ['Mandiri', 'BRI'],
     ucwords(text) {
@@ -63,6 +67,9 @@ Alpine.data('form', () => ({
         this.formData = {
             transaction: 'expense',
             date: '',
+            monthYear: '',
+            month: '',
+            year: '',
             category: '',
             amount: '',
             account: '',
@@ -102,8 +109,12 @@ Alpine.data('form', () => ({
 
     hideModal() {
         const datepickerHideButton = document.querySelector('[data-modal-hide="popup-datepicker"]');
+        const monthpickerHideButton = document.querySelector('[data-modal-hide="popup-monthpicker"]');
         if (datepickerHideButton) {
             datepickerHideButton.click();
+        }
+        if (monthpickerHideButton) {
+            monthpickerHideButton.click();
         }
     },
 
@@ -122,6 +133,57 @@ Alpine.data('form', () => ({
             } 
             this.hideModal()
         });
+
+        this.$nextTick(() => {            
+            const inlineMonthpickerEl = this.$refs.inlineMonthpickerEl;
+            const inlinePicker = inlineMonthpickerEl.datepicker
+            inlinePicker.setOptions({ 
+                pickLevel: 1,
+            })
+
+            inlineMonthpickerEl.addEventListener('changeDate', (event) => {
+                const selectedDate = event.detail.date;
+                if (selectedDate) {
+                    const year = selectedDate.getFullYear();
+                    const month = selectedDate.toLocaleString('default', { month: 'long' });
+                    this.formData.monthYear = `${month} ${year}`;
+                    this.formData.month = `${month}`;
+                    this.formData.year = `${year}`;
+                } else {
+                    this.formData.monthYear = '';
+                    this.formData.month = '';
+                    this.formData.year = '';
+                } 
+                inlinePicker.refresh({
+                    forceRender: true
+                })
+                this.hideModal()
+            })
+
+            const monthpickerEl = this.$refs.monthpickerEl;
+            const picker = monthpickerEl.datepicker
+            picker.setOptions({ 
+                pickLevel: 1,
+            })
+
+            monthpickerEl.addEventListener('changeDate', (event) => {
+                const selectedDate = event.detail.date;
+                if (selectedDate) {
+                    const year = selectedDate.getFullYear();
+                    const month = selectedDate.toLocaleString('default', { month: 'long' });
+                    this.formData.monthYear = `${month} ${year}`;
+                    this.formData.month = `${month}`;
+                    this.formData.year = `${year}`;
+                } else {
+                    this.formData.monthYear = '';
+                    this.formData.month = '';
+                    this.formData.year = '';
+                } 
+                picker.refresh({
+                    forceRender: true
+                })
+            })
+        })
     }
 }))
  
