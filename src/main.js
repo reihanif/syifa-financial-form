@@ -72,7 +72,7 @@ Alpine.data('form', () => ({
         ],
         income: ['monthly salary', 'gift', 'receivables', 'remain balance', 'bonus', 'other']
     },
-    accounts: ['Mandiri', 'BNI', 'Cash'],
+    accounts: ['Mandiri', 'BNI', 'Cash', 'Gopay', 'Ovo', 'Dana', 'Shopeepay'],
     ucwords(text) {
         return text.charAt(0).toUpperCase() + text.slice(1);
     },
